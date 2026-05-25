@@ -3,7 +3,7 @@ require('node-telegram-bot-api')
 
 const bot =
 new TelegramBot(
-  '8899094133:AAH4Ok0uUZkfyABrrLv7VJQGtiAkXRN-nGU',
+  'TOKEN_BOT_KAMU',
   { polling: true }
 )
 
@@ -17,7 +17,9 @@ bot.onText(
 
     msg.chat.id,
 
-'Hai🫵\n\nMain suit yuk!',
+`Hai 🫵
+
+Main suit yuk 😭🔥`,
 
 {
   reply_markup: {
@@ -26,7 +28,7 @@ bot.onText(
 
       {
         text: '🎮 Ayo Suit',
-        callback_data: 'Ayo_suit'
+        callback_data: 'main'
       }
 
     ]]
@@ -38,7 +40,7 @@ bot.onText(
 
 })
 
-// BUTTON
+// CALLBACK BUTTON
 bot.on(
 'callback_query',
 
@@ -50,38 +52,44 @@ async (query) => {
   const chatId =
   query.message.chat.id
 
-  // buka pilihan
-  if (
-    data === 'ayo_suit'
-  ) {
+  // MENU PILIHAN
+  if (data === 'main') {
 
     return bot.sendMessage(
 
       chatId,
 
-'Pilih tanganmu 🤭',
+`Pilih tangan mu 😏`,
 
 {
   reply_markup: {
 
-    inline_keyboard: [[
+    inline_keyboard: [
 
-      {
-        text: '🪨 Batu',
-        callback_data: 'batu'
-      },
+      [
 
-      {
-        text: '📄 Kertas',
-        callback_data: 'kertas'
-      },
+        {
+          text: '🪨 Batu',
+          callback_data: 'batu'
+        },
 
-      {
-        text: '✂️ Gunting',
-        callback_data: 'gunting'
-      }
+        {
+          text: '📄 Kertas',
+          callback_data: 'kertas'
+        }
 
-    ]]
+      ],
+
+      [
+
+        {
+          text: '✂️ Gunting',
+          callback_data: 'gunting'
+        }
+
+      ]
+
+    ]
 
   }
 }
@@ -90,7 +98,7 @@ async (query) => {
 
   }
 
-  // pilihan bot
+  // PILIHAN BOT
   const pilihanBot = [
 
     'batu',
@@ -108,28 +116,33 @@ async (query) => {
       )
     ]
 
-  // emoji
+  // EMOJI
   const emoji = {
 
-    batu: '🪨 Batu',
-    kertas: '📄 Kertas',
-    gunting: '✂️ Gunting'
+    batu:
+    '🪨 Batu',
+
+    kertas:
+    '📄 Kertas',
+
+    gunting:
+    '✂️ Gunting'
 
   }
 
   let hasil
 
-  // seri
+  // SERI
   if (
     data === randomBot
   ) {
 
     hasil =
-    '🤝 Kita Sepakat Hasilnya SERI'
+    '😐 Yah seri'
 
   }
 
-  // menang
+  // MENANG
   else if (
 
     (
@@ -154,30 +167,47 @@ async (query) => {
   ) {
 
     hasil =
-    '🏆 kamu menang'
+    '🏆 Kamu menang 😭🔥'
 
   }
 
-  // kalah
+  // KALAH
   else {
 
     hasil =
-    '😂 Kamu kalah'
+    '😂 Yah kamu kalah'
 
   }
 
-  // kirim hasil
+  // HASIL
   bot.sendMessage(
 
     chatId,
 
-`Kamu:
+`${hasil}
+
+Kamu:
 ${emoji[data]}
 
-Bot:
-${emoji[randomBot]}
+Aku:
+${emoji[randomBot]}`,
 
-${hasil}`
+{
+  reply_markup: {
+
+    inline_keyboard: [[
+
+      {
+        text:
+        '🔄 Suit Lagi!',
+        callback_data:
+        'main'
+      }
+
+    ]]
+
+  }
+}
 
   )
 
