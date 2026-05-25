@@ -3,7 +3,7 @@ require('node-telegram-bot-api')
 
 const bot =
 new TelegramBot(
-  'TOKEN_BOT_KAMU',
+  '8899094133:AAH4Ok0uUZkfyABrrLv7VJQGtiAkXRN-nGU',
   { polling: true }
 )
 
